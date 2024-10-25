@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Bebidas</title>
+</head>
+<body>
+    <h1>Menú de Bebidas</h1>
+
+    <form method="POST" action="/menu">
+        <input type="hidden" name="cantidad_bebidas" value="{{ cantidad_bebidas }}">
+
+        {% for i in range(cantidad_bebidas) %}
+        <h2>Bebida {{ i + 1 }}</h2>
+        <label for="tipo_bebida_{{ i }}">Tipo de Bebida:</label>
+        <select id="tipo_bebida_{{ i }}" name="tipo_bebida_{{ i }}">
+            <option value="Cafe Americano">Café Americano</option>
+            <option value="Macha">Macha</option>
+            <option value="Capuccino">Capuccino</option>
+        </select><br><br>
+
+        <label for="tipo_leche_{{ i }}">Tipo de Leche:</label>
+        <select id="tipo_leche_{{ i }}" name="tipo_leche_{{ i }}">
+            <option value="Light">Light</option>
+            <option value="Deslactosada">Deslactosada</option>
+            <option value="Entera">Entera</option>
+        </select><br><br>
+
+        <label for="azucar_{{ i }}">¿Azúcar?:</label>
+        <select id="azucar_{{ i }}" name="azucar_{{ i }}">
+            <option value="Si">Sí</option>
+            <option value="No">No</option>
+        </select><br><br>
+
+        {% endfor %}
+        <button type="submit">Guardar Bebidas</button>
+    </form>
+</body>
+</html>

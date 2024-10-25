@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Pedido</title>
+    <script>
+        // Función para generar los formularios de bebidas dinámicamente
+        function mostrarFormularios() {
+            let cantidadBebidas = document.getElementById('cantidad_bebidas').value;
+            let contenedor = document.getElementById('formularios_bebidas');
+            contenedor.innerHTML = '';  // Limpiar cualquier contenido previo
+
+            for (let i = 0; i < cantidadBebidas; i++) {
+                contenedor.innerHTML += `
+                    <div id="bebida_${i}">
+                        <h3>Bebida ${i + 1}</h3>
+                        <label for="tipo_bebida_${i}">Tipo de Bebida:</label>
+                        <select id="tipo_bebida_${i}" name="tipo_bebida_${i}">
+                            <option value="Cafe Americano">Café Americano</option>
+                            <option value="Macha">Macha</option>
+                            <option value="Capuccino">Capuccino</option>
+                        </select><br>
+
+                        <label for="tipo_leche_${i}">Tipo de Leche:</label>
+                        <select id="tipo_leche_${i}" name="tipo_leche_${i}">
+                            <option value="Light">Light</option>
+                            <option value="Deslactosada">Deslactosada</option>
+                            <option value="Entera">Entera</option>
+                        </select><br>
+
+                        <label for="azucar_${i}">¿Azúcar?:</label>
+                        <select id="azucar_${i}" name="azucar_${i}">
+                            <option value="Si">Sí</option>
+                            <option value="No">No</option>
+                        </select><br><br>
+                    </div>
+                `;
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+    <h1>Registro de Pedido</h1>
+    
+    <!-- Formulario inicial -->
+    <form method="POST" action="/">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required><br><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required><br><br>
+
+        <label for="cantidad_bebidas">Cantidad de Bebidas:</label>
+        <input type="number" id="cantidad_bebidas" name="cantidad_bebidas" min="1" required>
+        <button type="button" onclick="mostrarFormularios()">Agregar Bebidas</button><br><br>
+
+        <!-- Aquí se generarán dinámicamente los formularios de bebidas -->
+        <div id="formularios_bebidas"></div>
+
+        <br>
+        <!-- Botón para hacer el pedido -->
+        <button type="submit">Hacer Pedido</button>
+    </form>
+</body>
+</html>
