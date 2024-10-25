@@ -1,0 +1,94 @@
+version: "3.1"
+
+intents:
+  - intent_inicio
+  - intent_menu
+  - intent_pedido
+  - intent_horario
+  - intent_forma_pago
+  - intent_registro_nombre
+  - intent_registro_numero_registro
+  - intent_registro_direccion
+  - action_save_phone_number
+
+
+entities:
+  - nombre
+  - numero
+  - direccion
+
+slots:
+
+  nombre:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: nombre
+
+  numero:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: numero
+
+  direccion:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_entity
+        entity: direccion
+
+  phone_number:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+
+responses:
+
+  utter_inicio_panel:
+    - text: "Hola, un gusto saludarte, Bienvenido a Tory Cafe, ¿En qué puedo ayudarte?\n
+            Escribe alguna de las siguientes 4 opciones del panel:\n
+            1. ver menú\n
+            2. hacer pedido\n 
+            3. ver horarios\n 
+            4. formas de pago\n
+            (El menú te mostrará disponibilidad en tiempo real)"
+
+  utter_ver_horarios:
+    - text: "Los horarios de atención son los siguientes:\n
+             Lunes a Viernes: 9am - 11pm\n
+             Sábado y Domingo: 9am - 6pm\n
+             Realiza tu pedido escribiendo 'hacer pedido', de lo contrario consulta otra opción del panel."
+
+  utter_ver_menu:
+    - text: "Claro, te comparto el siguiente pdf *enviar pdf*\n
+             Realiza tu pedido escribiendo 'hacer pedido', de lo contrario consulta otra opción del panel."
+
+  utter_registro_nombre:
+    - text: "Perfecto, gracias por tu confianza\n
+             Te comparto brevemente un [link](http://localhost:5056/), por favor llénalo.\n
+             Una vez completado, escribe el NOMBRE que proporcionaste:"
+
+  utter_registro_numero_registro:
+    - text: "tambien escribe tu NUMERO DE REGISTRO que se te proporcionó:"
+
+  utter_forma_pago:
+    - text: "Contamos con pagos en:\n
+             - Efectivo (paga cuando te entreguen tus alimentos)\n
+             - Pagos con tarjeta (te cobramos en el momento)\n
+             Realiza tu pedido escribiendo 'hacer pedido', de lo contrario consulta otra opción del panel."
+
+actions:
+  # - action_get_registro_pedido: {send_domain: True}
+  - action_save_data: {send_domain: True}
+  - action_get_horario: {send_domain: True}
+  - action_registro_nombre: {send_domain: True}
+  - action_acotar_ubicacion: {send_domain: True}
+  - action_save_phone_number: {send_domain: True}
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
