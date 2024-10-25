@@ -1,0 +1,44 @@
+version: "3.1"
+
+rules:
+
+- rule: regla_inicio
+  steps:
+  - intent: intent_inicio
+  - action: action_save_phone_number
+
+- rule: regla_menu
+  steps:
+  - intent: intent_menu
+  - action: utter_ver_menu
+
+
+- rule: regla_horario
+  steps:
+  - intent: intent_horario
+  - action: action_get_horario
+
+- rule: regla_forma_pago
+  steps:
+  - intent: intent_forma_pago
+  - action: utter_forma_pago
+
+- rule: regla_pedido
+  steps:
+  - intent: intent_registro_direccion
+  - action: action_registro_nombre
+
+- rule: regla_nombre
+  steps:
+  - intent: intent_registro_nombre
+  - action: utter_registro_numero_registro
+
+- rule: regla_numero
+  steps:
+  - intent: intent_registro_numero_registro
+  - action: action_save_data
+
+- rule: regla_acotar_ubicacion
+  steps:
+  - intent: intent_pedido
+  - action: action_acotar_ubicacion

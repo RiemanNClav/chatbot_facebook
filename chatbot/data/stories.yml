@@ -1,0 +1,329 @@
+version: "3.1"
+
+stories:
+
+- story: historia menu_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+  ## 3 OPCIONES
+- story: historia menu_horarios_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+- story: historia menu_atencion_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+- story: historia horarios_menu_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panelanel
+
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+- story: historia horarios_atencion_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+- story: historia atencion_menu_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+- story: historia atencion_horarios_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+  ## 4 OPCIONES
+- story: historia menu_horarios_atencion_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+- story: historia menu_atencion_horarios_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+            # 1. ver menu\n
+            # 2. hacer pedido\n 
+            # 3. ver horarios\n 
+            # 4. forma de pago\n
+
+
+- story: historia horarios_menu_atencion_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data
+
+
+- story: historia horarios_atencion_menu_pedido
+  steps:
+    - intent: intent_inicio
+    - action: action_save_phone_number
+    # - action: utter_inicio_panel
+    - intent: intent_horario
+    - action: action_get_horario
+
+    - intent: intent_forma_pago
+    - action: utter_forma_pago
+
+    - intent: intent_menu
+    - action: utter_ver_menu
+
+    - intent: intent_pedido
+    - action: action_acotar_ubicacion
+    - intent: intent_registro_direccion
+      entities:
+        - direccion
+    - action: action_registro_nombre
+    - intent: intent_registro_nombre
+      entities:
+        - nombre
+  
+    - action: utter_registro_numero_registro
+    - intent: intent_registro_numero_registro
+      entities:
+        - numero
+    - action: action_save_data

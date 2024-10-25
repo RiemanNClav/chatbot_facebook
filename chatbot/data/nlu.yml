@@ -1,0 +1,312 @@
+version: "3.1"
+
+nlu:
+- intent: intent_inicio
+  examples: |
+    - Hey 
+    - hey
+    - Hola
+    - HOLA
+    - hola
+    - Hola, Buenos dias
+    - Hola, Buenas tardes
+    - Hola, Buenas noches
+    - Que tal
+    - que tal
+    - QUE TAL
+    - que onda
+    - que Onda
+    - Que onda
+    - QUE ONDA
+    - hola, buenos dias
+    - hola, buenas tardes
+    - hola, buenas noches
+    - hola, BUENAS TARDES
+    - hola, BUENAS NOCHES
+    - hola, BUENOS DIAS
+    - hola buenos dias
+    - hola buenas tardes
+    - hola buenas noches
+    - Buenos Dias
+    - Buenas Tardes
+    - Buenas Noches
+    - buenos dias
+    - buenas tardes
+    - buenas noches
+    - BUENAS NOCHES
+    - BUENOS DIAS
+    - BUENAS TARDES
+
+- intent: intent_menu
+  examples: |
+    - ver menu
+    - Ver menu
+    - ver Menu
+    - Ver Menu
+    - VER MENU
+    - Menu
+    - menu
+    - MENU
+    - vermenu
+    - VERMENU
+    - VerMenu
+
+- intent: intent_pedido
+  examples: |
+    - hacer pedido
+    - Hacer pedido
+    - hacer Pedido
+    - Hacer Pedido
+    - HACER PEDIDO
+    - hacerpedido
+    - HacerPedido
+    - HACERPEDIDO
+    - pedido
+    - Pedido
+    - PEDIDO
+
+
+- intent: intent_horario
+  examples: |
+    - ver horarios
+    - Ver horarios
+    - ver Horarios
+    - Ver Horarios
+    - VER HORARIOS
+    - verhorarios
+    - VerHorarios
+    - VERHORARIOS
+    - horarios
+    - Horarios
+    - HORARIOS
+
+
+
+- intent: intent_forma_pago
+  examples: |
+    - formas de pago
+    - Formas de pago
+    - Formas De pago
+    - Formas de Pago
+    - forma de pago
+    - Forma de pago
+    - Forma De Pago
+    - forma de pagar
+    - Forma de pagar
+    - FORMA DE PAGAR 
+    - Formas
+    - formas
+    - FORMAS
+    - Pagos
+    - pagos
+    - PAGOS
+
+- intent: intent_registro_nombre
+  examples: |
+    - [MARIA FERNANDA LOPEZ](nombre)
+    - [Juan carlos perez gonzalez](nombre)
+    - SOFIA RAMIREZ CRUZ](nombre)
+    - [luis alejandro](nombre)
+    - [ana patricia ortega jimenez](nombre)
+    - [miguel ángel GARCIA TORRES](nombre)
+    - [CARMEN daniela FERNANDEZ](nombre)
+    - [josé antonio RIVERA](nombre)
+    - [claudia morales avila](nombre)
+    - [DAVID SANCHEZ VARGAS](nombre)
+    - [Isabella valentina](nombre)
+    - [EDUARDO MANUEL](nombre)
+    - [karina](nombre)
+    - FERNANDO](nombre)
+    - [gabriela sofía castro peña](nombre)
+    - [Francisco javier ORTIZ MUÑOZ](nombre)
+    - [lucía paola martínez figueroa](nombre)
+    - [SANTIAGO david RIOS](nombre)
+    - [mónica PATRICIA](nombre)
+    - [carlos alberto](nombre)
+    - [VERÓNICA castillo lozano](nombre)
+    - [Alejandro REYES DOMÍNGUEZ](nombre)
+    - [daniela](nombre)
+    - [JORGE](nombre)
+    - [paola carolina VARGAS salinas](nombre)
+    - [diego ARMANDO guzmán blanco](nombre)
+    - [Sara lucía ORTIZ padilla](nombre)
+    - [adrián nicolás CAMPOS](nombre)
+    - [CLAUDIA maría](nombre)
+    - [Rodrigo EDUARDO](nombre)
+    - [laurazúñiga velázquez](nombre)
+    - [LUIS ÁVILA JIMÉNEZ](nombre)
+    - [andrea](nombre)
+    - [HÉCTOR](nombre)
+    - [ELENA gabriela pacheco sosa](nombre)
+    - [cristian alejandro trejo cano](nombre)
+    - [MONTSERRAT NATALIA PINEDA LEÓN](nombre)
+    - [iván ernesto flores rocha](nombre)
+    - [Karen daniela MORALES CASTAÑEDA](nombre)
+    - [raúl enrique SALGADO MONTERO](nombre)
+    - [MARÍA de los ÁNGELES vázquez ibarra](nombre)
+    - [jose ángel mendez aguirre](nombre)
+    - [DIANA PAOLA FUENTES LEDESMA](nombre)
+    - [arturo césar esquivel maldonado](nombre)
+    - [VALERIA ANDREA CRUZ CONTRERAS](nombre)
+    - [esteban nicolás cabrera ruiz](nombre)
+    - [patricia carolina rivas solís](nombre)
+    - [RICARDO JAVIER MEDINA MORALES](nombre)
+    - [Gabriel leonardo castillo vargas](nombre)
+    - [alejandra sofía molina torres](nombre)
+    - [alejandra molina torres](nombre)
+    - [JUAN PABLO](nombre)
+    - [sofia castro](nombre)
+    - [MIGUEL ÁNGEL PÉREZ](nombre)
+    - [claudia hernandez](nombre)
+    - [DANIEL RAMIREZ](nombre)
+    - [lucia fernandez gómez](nombre)
+    - [MARIA JOSE GARCÍA](nombre)
+    - [julian torres](nombre)
+    - [VALERIA PÉREZ SERRANO](nombre)
+    - [antonio rodriguez](nombre)
+    - [ANA CASTILLO](nombre)
+    - [pedro gomez moreno](nombre)
+    - [ANGELICA RAMOS](nombre)
+    - [JOSE MARTINEZ LOPEZ](nombre)
+    - [luis mendoza](nombre)
+    - [ISABEL ALVAREZ](nombre)
+    - [natalia martinez](nombre)
+    - [SANTIAGO DIAZ](nombre)
+    - [carlos jiménez](nombre)
+    - [FATIMA PEREZ ORTIZ](nombre)
+    - [josefina aguilar](nombre)
+    - [SERGIO HERNANDEZ](nombre)
+    - [sofia lopez](nombre)
+    - [MANUEL CORDOVA SÁNCHEZ](nombre)
+    - [roberto quiroz](nombre)
+    - [DANIELA RIVERA PÉREZ](nombre)
+    - [camila acosta](nombre)
+    - [MATEO RAMIREZ LOPEZ](nombre)
+    - [javier torres](nombre)
+    - [LAURA GARCÍA](nombre)
+    - [andres perez montoya](nombre)
+    - [MARIA FERNANDA LUNA](nombre)
+    - [raul gutierrez](nombre)
+    - [JULIETA SANTOS](nombre)
+    - [emma garcia](nombre)
+    - [LUIS ALBERTO MARTÍNEZ](nombre)
+    - [elena morales](nombre)
+    - [CARLOS RAMOS CARRILLO](nombre)
+    - [nicolas suarez](nombre)
+    - [PATRICIA HERRERA](nombre)
+    - [mario sánchez](nombre)
+    - [MARCOS LARA](nombre)
+    - [martina gonzalez](nombre)
+    - [ANTONIA ZUÑIGA](nombre)
+    - [fernando castro](nombre)
+    - [ROXANA VALLE](nombre)
+    - [andrea villalobos](nombre)
+    - [EDUARDO LOPEZ PEREZ](nombre)
+
+
+- intent: intent_registro_numero_registro
+  examples: |
+    - [1](numero)
+    - [23](numero)
+    - [45](numero)
+    - [67](numero)
+    - [89](numero)
+    - [102](numero)
+    - [134](numero)
+    - [156](numero)
+    - [178](numero)
+    - [200](numero)
+    - [222](numero)
+    - [245](numero)
+    - [267](numero)
+    - [289](numero)
+    - [311](numero)
+    - [333](numero)
+    - [355](numero)
+    - [377](numero)
+    - [400](numero)
+    - [422](numero)
+    - [444](numero)
+    - [466](numero)
+    - [488](numero)
+    - [500](numero)
+    - [522](numero)
+    - [545](numero)
+    - [567](numero)
+    - [589](numero)
+    - [611](numero)
+    - [633](numero)
+    - [655](numero)
+    - [677](numero)
+    - [700](numero)
+    - [722](numero)
+    - [744](numero)
+    - [766](numero)
+    - [789](numero)
+    - [811](numero)
+    - [833](numero)
+    - [855](numero)
+    - [877](numero)
+    - [900](numero)
+    - [922](numero)
+    - [944](numero)
+    - [966](numero)
+    - [988](numero)
+    - [1000](numero)
+    - [145](numero)
+    - [356](numero)
+    - [678](numero)
+
+- intent: intent_registro_direccion
+  examples: |
+    - [AZCAPOTZALCO, SANTA CRUZ DE LAS SALINAS, AVENIDA PONIENTE 128 505](direccion)
+    - [Benito Juárez, Del Valle Norte, calle Félix Cuevas 320](direccion)
+    - [coyoacan, copilco universidad, av universidad 3000](direccion)
+    - [Cuauhtémoc, Roma Norte, Álvaro Obregón 200](direccion)
+    - [IZTAPALAPA, SAN ANDRÉS TETEPILCO, ERMITA IZTAPALAPA 4500](direccion)
+    - [miguel hidalgo, polanco, Presidente Masaryk 150](direccion)
+    - [Tlalpan, Fuentes Brotantes, Camino a Santa Teresa 1234](direccion)
+    - [alvaro obregon, san angel, Revolución 567](direccion)
+    - [VENUSTIANO CARRANZA, MOCTEZUMA 2A SECCIÓN, NORTE 172 220](direccion)
+    - [gustavo a. madero, lindavista, avenida insurgentes norte 1400](direccion)
+    - [IZTACALCO, GRANJAS MÉXICO, CALLE SUR 24 55](direccion)
+    - [xochimilco, santa cruz acalpixca, calle 5 de mayo 900](direccion)
+    - [MILPA ALTA, SAN PEDRO ATOCPAN, AV MÉXICO 400](direccion)
+    - [Tláhuac, Zapotitlán, avenida la turba 1000](direccion)
+    - [benito juarez, narvarte poniente, calle diagonal de san antonio 800](direccion)
+    - [Cuajimalpa de Morelos, Bosques de las Lomas, Paseo de los Tamarindos 300](direccion)
+    - [MAGDALENA CONTRERAS, SAN JERÓNIMO LÍDICE, AVENIDA SAN JERÓNIMO 400](direccion)
+    - [cuauhtemoc, doctores, eje central 290](direccion)
+    - [AZCAPOTZALCO, TEZOZÓMOC, AQUILES SERDÁN 128](direccion)
+    - [Iztapalapa, Ejército de Oriente, calzada Ignacio Zaragoza 1123](direccion)
+    - [benito juarez, nativitas, calzada de tlalpan 1500](direccion)
+    - [COYOACÁN, PARQUE SAN ANDRÉS, AVENIDA PACÍFICO 400](direccion)
+    - [cuauhtemoc, centro histórico, calle madero 45](direccion)
+    - [ÁLVARO OBREGÓN, OLIVAR DEL CONDE, CALLE SUR 122 800](direccion)
+    - [miguel hidalgo, anáhuac, lago alberto 105](direccion)
+    - [VENUSTIANO CARRANZA, JARDÍN BALBUENA, AVENIDA DEL TALLER 325](direccion)
+    - [TLAHUAC, LA CONCHITA ZAPOTITLÁN, CALLE 5 SUR 312](direccion)
+    - [AZCAPOTZALCO, NUEVA SANTA MARÍA, CALLE PONIENTE 112 903](direccion)
+    - [BENITO JUAREZ, PORTALES NORTE, AV. EMILIANO ZAPATA 153](direccion)
+    - [Coyoacán, Barrio del Niño Jesús, calle miguel ángel de quevedo 830](direccion)
+    - [TLALPAN, TEPEXPAN, CALLE INSURGENTES SUR 1534](direccion)
+    - [ALVARO OBREGON, TOLTECA, AV REVOLUCIÓN 987](direccion)
+    - [Miguel Hidalgo, San Miguel Chapultepec, Avenida Jalisco 450](direccion)
+    - [Venustiano Carranza, AEROPUERTO, calle monte albán 25](direccion)
+    - [BENITO JUÁREZ, SAN SIMÓN TICUMAC, AV UNIVERSIDAD 1556](direccion)
+    - [IZTAPALAPA, SANTA MARÍA AZTAHUACÁN, CALLE ORIENTE 108 15](direccion)
+    - [Coyoacan, Villa Coyoacán, av miguel ángel de quevedo 1200](direccion)
+    - [Xochimilco, Santiago Tepalcatlalpan, calle 16 de septiembre 44](direccion)
+    - [GUSTAVO A. MADERO, SAN JUAN DE ARAGÓN, AVENIDA 608 123](direccion)
+    - [Alvaro Obregon, Guadalupe Inn, av insurgentes sur 1234](direccion)
+    - [Magdalena Contreras, Barrio San Francisco, av san francisco 256](direccion)
+    - [IZTACALCO, RAMOS MILLÁN, CALLE SUR 20 400](direccion)
+    - [Cuauhtémoc, Tabacalera, avenida puebla 68](direccion)
+    - [Coyoacán, Los Reyes, calle belisario domínguez 312](direccion)
+    - [Venustiano Carranza, Artes Gráficas, calle congreso de la unión 560](direccion)
+    - [GUSTAVO A. MADERO, LINDAVISTA, CALLE MONTEVIDEO 134](direccion)
+    - [IZTAPALAPA, CONSTITUCIÓN DE 1917, AVENIDA TLAHUAC 200](direccion)
+    - [COYOACÁN, CIUDAD JARDÍN, CALLE MIRAMONTES 140](direccion)
+    - [ALVARO OBREGÓN, LOMAS DE TARANGO, CALLE CENTENARIO 760](direccion)
+    - [BENITO JUÁREZ, NÁPOLES, CALLE DAKOTA 340](direccion)
+    - [TLALPAN, ISIDRO FABELA, CALZADA DE TLALPAN 1893](direccion)
