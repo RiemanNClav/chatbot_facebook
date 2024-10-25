@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  rasa:
+    build:
+      context: ./registro_venta
+      dockerfile: registro.dockerfile
+    ports:
+      - 5056:5056
