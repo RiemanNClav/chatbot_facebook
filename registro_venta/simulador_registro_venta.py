@@ -146,3 +146,5 @@ if __name__=="__main__":
        clase = RegistroVenta('Angel Uriel Chavez Clavellina')
        clase.tabla_registro_ventas()
        clase.consulta_confirmacion('526968144662' , 512)
+
+
