@@ -5,7 +5,7 @@ rules:
 - rule: regla_inicio
   steps:
   - intent: intent_inicio
-  - action: action_save_phone_number
+  - action: utter_inicio_panel
 
 - rule: regla_menu
   steps:

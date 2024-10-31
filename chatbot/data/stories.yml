@@ -5,8 +5,8 @@ stories:
 - story: historia menu_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
 
     - intent: intent_menu
     - action: utter_ver_menu
@@ -32,8 +32,8 @@ stories:
 - story: historia menu_horarios_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_menu
     - action: utter_ver_menu
 
@@ -60,8 +60,8 @@ stories:
 - story: historia menu_atencion_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_menu
     - action: utter_ver_menu
 
@@ -88,8 +88,8 @@ stories:
 - story: historia horarios_menu_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panelanel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
 
     - intent: intent_horario
     - action: action_get_horario
@@ -117,8 +117,8 @@ stories:
 - story: historia horarios_atencion_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_horario
     - action: action_get_horario
 
@@ -145,8 +145,8 @@ stories:
 - story: historia atencion_menu_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_forma_pago
     - action: utter_forma_pago
 
@@ -173,8 +173,8 @@ stories:
 - story: historia atencion_horarios_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_forma_pago
     - action: utter_forma_pago
 
@@ -202,8 +202,8 @@ stories:
 - story: historia menu_horarios_atencion_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_menu
     - action: utter_ver_menu
 
@@ -233,8 +233,8 @@ stories:
 - story: historia menu_atencion_horarios_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_menu
     - action: utter_ver_menu
 
@@ -270,8 +270,8 @@ stories:
 - story: historia horarios_menu_atencion_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_horario
     - action: action_get_horario
 
@@ -301,8 +301,8 @@ stories:
 - story: historia horarios_atencion_menu_pedido
   steps:
     - intent: intent_inicio
-    - action: action_save_phone_number
-    # - action: utter_inicio_panel
+    #- action: action_save_phone_number
+    - action: utter_inicio_panel
     - intent: intent_horario
     - action: action_get_horario
 
