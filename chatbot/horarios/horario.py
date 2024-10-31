@@ -261,13 +261,10 @@ class GoogleDrive():
 
         print(dicc)
         return dicc
-
-
+    
         
 if __name__=="__main__":
         clase = GoogleDrive()
-        clase.action_acotar_ubicacion()
-        clase.action_get_horario()
         # print(f"Hora de trabajo para hoy 15: {dia}")
         # print(f"Hora actual: {hora_actual}")
 
@@ -283,3 +280,6 @@ if __name__=="__main__":
         # print("Response 2:", expanded_response2)
         # print("Response 3:", expanded_response3)
         # print("Response 4:", expanded_response4)
+
+
+        
