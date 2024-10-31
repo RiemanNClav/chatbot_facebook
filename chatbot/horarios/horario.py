@@ -6,12 +6,15 @@ from datetime import datetime, timedelta
 
 from dataclasses import dataclass
 
+import gspread
+from google.oauth2.service_account import Credentials
+
 
 @dataclass
 class HorariosConfig:
         base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        horarios_path: str=os.path.join(base_dir, 'ventas', 'horarios', "horarios.csv")
-        horarios_particulares_path: str=os.path.join(base_dir, 'ventas', 'horarios', "horario_particular.txt")
+        horarios_path: str=os.path.join(base_dir, 'horarios', "horarios.csv")
+        horarios_particulares_path: str=os.path.join(base_dir, 'horarios', "horario_particular.txt")
 
 
 class Horarios:
@@ -68,7 +71,7 @@ class Horarios:
                 except ValueError:
                         return "Fecha no válida (ej. no existe el 30 de febrero)"
         
-        def resumir_horarios(self,horarios):
+        def resumir_horarios(self,horarios) -> list:
                 horario_habitual='HORARIO HABITUAL\n'
                 dias_ordenados = list(horarios.items())
                 resumen = []
@@ -95,14 +98,16 @@ class Horarios:
                 for r in resumen:
                         horario_habitual += r + '\n'
 
-                return horario_habitual
+                return resumen
 
         def expand_days(self, responses: list):
                 horario_particular = 'HORARIO PARTICULAR\n'
                 days_schedule = {}
+                resumen = []
                 for response in responses:
                         r = response.replace('[', "").replace("]", "")
                         horario_particular += r + '\n'
+                        resumen.append(r)
                         pattern = r'\[(.*?)\]'
                         matches = re.findall(pattern, response)
                         
@@ -125,27 +130,38 @@ class Horarios:
                                                 days_schedule[day] = horario
                 
         
-                return days_schedule, horario_particular
+                return days_schedule, resumen
         
-        def print_horario(self):
-                horarios = pd.read_csv(self.horarios_config.horarios_path)
-                horario_general = dict(zip(horarios.dia, horarios.horario_habitual))
+        def print_horario(self, horario_habitual: dict, horario_particular: list):
+                # horarios = pd.read_csv(self.horarios_config.horarios_path)
+                # horario_general = dict(zip(horarios.dia, horarios.horario_habitual))
 
-                particulares = self.horarios_config.horarios_particulares_path
+                horario_general = horario_habitual
+                # particulares = self.horarios_config.horarios_particulares_path
+                particulares = horario_particular
 
                 horario_habitual = self.resumir_horarios(horario_general)
-                lista_renglones = self.leer_txt_en_lista(particulares)
+                # lista_renglones = self.leer_txt_en_lista(particulares)
+                lista_renglones = particulares
                 if lista_renglones != []:
                         particulares, horario_particular = self.expand_days(lista_renglones)
-                        return horario_general, particulares, horario_particular, horario_habitual
+                        aux = ["2"]
                 else:
-                        return horario_general, '1', '2', horario_habitual
+                        aux = ["1"]
+                        particulares = ["1"]
+                        horario_particular = ["2"]
                 
-        def horario(self):
+                dicc = {"particulares": aux,
+                        "horario_particular": horario_particular,
+                        "horario_habitual": horario_habitual}
+                
+                return dicc, horario_general, particulares
+                
+        def horario(self, horario_habitual: dict, horario_particular: list):
                 fecha_actual_str, dia_actual, nombre_dia, mes_actual, hora_actual, dia_anterior = self.fecha_actual()
-                horario_general, particulares, _, _ = self.print_horario()
+                _, horario_general, particulares = self.print_horario(horario_habitual, horario_particular)
                 ## QUIERE DECIR QUE NO HAY PARTICULARES
-                if particulares == '1':
+                if particulares == ['1']:
                         dia = horario_general[nombre_dia]
 
                 else:
@@ -179,6 +195,8 @@ class Horarios:
                 inf_hora = int(estandarizacion_horarios[horario_trabajo[0]])
                 sup_hora = int(estandarizacion_horarios[horario_trabajo[1]])
                 hora_entera = float(hora_actual.replace(":", '.'))
+
+                botton2=0
                 
                 if (inf_hora <= hora_entera) and (hora_entera <= sup_hora):
                         disponiblidad = 'Si tenemos servicio!!\n'
@@ -187,28 +205,69 @@ class Horarios:
                         botton = 0
                         if hora_entera < inf_hora:
                                 disponiblidad = f"Aun no tenemos servicio,  te recordamos que nuestro horario es de {dia}, gracias"
+                                botton2 = 1
                         elif hora_entera > sup_hora:
                                 disponiblidad = f"Lo siento, ya hemos cerrado, te recordamos que nuestro servicio fue de {dia}, gracias"
-                return disponiblidad, botton
+                                botton2 = 2
+
+                dicc = {"botton": botton,
+                        "botton2": botton2,
+                        "dia": dia}
                 
-                # print('\n')
-                # print(f"Hora actual de hoy 14: {hora_actual}")
-                # print(f"Hora de trabajo para hoy 14: {dia}")
+                return dicc
+                
+
+class GoogleDrive():
+    def __init__(self):
+        pass
+
+    def access(self):
+        ruta_credenciales = "horarios/credentials-service-account.json"  # Reemplaza con la ruta a tu archivo JSON de credenciales    
+        scopes = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
+
+        return ruta_credenciales, scopes
+
+
+    def obtener_datos_sheet(self, horario_habitual_hoja, horario_particular_hoja):
+        ruta_credenciales, scopes = self.access()
+
+        ##  CREDENCIALES
+        credenciales = Credentials.from_service_account_file(ruta_credenciales, scopes=scopes)
+        cliente = gspread.authorize(credenciales)
+
+        ## HORARIO HABITUAL
+        hoja1 = cliente.open(horario_habitual_hoja).sheet1
+        diccionario1 = dict((hoja1.get_all_values()[1:]))
+
+        ## HORARIO PARTICULAR
+        hoja2 = cliente.open(horario_particular_hoja).sheet1
+        diccionario2 = dict(hoja2.get_all_values()[1:])
+        diccionario2 = list(diccionario2.values())
+
+        return diccionario1, diccionario2
+    
+    def action_acotar_ubicacion(self):
+        horario_habitual, horario_particular = self.obtener_datos_sheet("horarios", "horario_particular")
+        obj = Horarios()
+        dicc = obj.horario(horario_habitual, horario_particular)
+
+        print(dicc)
+        return dicc
+
+    def action_get_horario(self):
+        horario_habitual, horario_particular = self.obtener_datos_sheet("horarios", "horario_particular")
+        obj = Horarios()
+        dicc, _, _ = obj.print_horario(horario_habitual, horario_particular)
+
+        print(dicc)
+        return dicc
 
 
         
 if __name__=="__main__":
-        obj = Horarios()
-        _, particulares, horario_particular, horario_habitual = obj.print_horario()
-        if particulares == '1':
-                print(horario_habitual)
-        else:
-                print(horario_habitual)
-                print(horario_particular)
-
-        print('\n')
-
-        dia, hora_actual = obj.horario()
+        clase = GoogleDrive()
+        clase.action_acotar_ubicacion()
+        clase.action_get_horario()
         # print(f"Hora de trabajo para hoy 15: {dia}")
         # print(f"Hora actual: {hora_actual}")
 
