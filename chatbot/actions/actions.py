@@ -13,10 +13,18 @@ from datetime import datetime, timedelta
 import mysql.connector
 
 ##MODULOS
-from horarios.horario import Horarios
+from horarios.horario import GoogleDrive
 from direcciones.api import ApiAddress
+from registro_venta.confirmaciones import RegistrosVentas
 
-## ------------------------------VER HORARIO----------------------------------
+
+api = GoogleDrive()
+get_horario = api.action_get_horario()
+acotar_ubicacion = api.action_acotar_ubicacion()
+
+dicc = get_horario | acotar_ubicacion
+
+## ------------------------------VER HORARIO----------------------------------  ya quedo
 class ActionGetHorario(Action):
 
     def name(self) -> Text:
@@ -24,16 +32,25 @@ class ActionGetHorario(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        obj = Horarios()
-        _, particulares, horario_particular, horario_habitual = obj.print_horario()
+        api = GoogleDrive()
+        dicc = api.action_get_horario()
+        particulares = dicc['particulares']
+        horario_particular = dicc["horario_particular"]
+        horario_habitual = dicc["horario_habitual"]
 
-        if particulares == '1':
-            response = horario_habitual
 
-        else:
-            response = horario_habitual
-            response += horario_particular
-            response += '\n'
+        response = "HORARIO HABITUAL\n"
+        request_horario_habitual = horario_habitual   ##aqui va el request
+        for resp in request_horario_habitual:
+            response += f"{resp}\n"
+
+        if particulares == ['2']:
+            response += "HORARIO PARTICULAR\n"
+            request_horario_particular = horario_particular   ##aqui va el request
+            for resp in request_horario_particular:
+                response += f"{resp}\n"
+            
+        response += '\n'
 
         response += "Realiza tu pedido escribiendo 'hacer pedido', de lo contrario consulta otra opción del panel."
 
@@ -49,17 +66,26 @@ class ActionGetAcotarUbicacion(Action):
     
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        obj = Horarios()
-
-        disponiblidad, botton = obj.horario()
-
+        
+        api = GoogleDrive()
+        dicc = api.action_acotar_ubicacion()
+        botton = dicc["botton"]
+        botton2 = dicc["botton2"]
+        dia = dicc["dia"]
 
         if botton == 1:
+            disponiblidad = 'Si tenemos servicio!!\n'
             disponiblidad += "Perfecto, gracias por tu confianza\n"
             disponiblidad += "\n"
             disponiblidad += "Antes de comenzar con tu pedido, queremos validar tu dirección, ingresala manualmente:\n"
             disponiblidad += "Ej-> alcaldia, colonia, calle"
+
+        else:
+            if botton2 == 1:
+                disponiblidad = f"Aun no tenemos servicio,  te recordamos que nuestro horario es de {dia}, gracias"
+            elif botton2 == 2:
+                disponiblidad = f"Lo siento, ya hemos cerrado, te recordamos que nuestro servicio fue de {dia}, gracias"
+
 
         dispatcher.utter_message(text=disponiblidad)
 
@@ -81,7 +107,7 @@ class ActionGetPedido(Action):
         try:
             result, radio, distancia = api.bola_cerrada(direccion)
             if result == 1:
-                response = "Increible, Si tenemos cobertura hasta tu dirreción!!"
+                response = "Increible, Si tenemos cobertura hasta tu direción!!"
                 response += "\n"
                 response += "Te comparto brevemente un [link](http://localhost:5056/), por favor llénalo.\n"
                 response += "Una vez completado, escribe el NUMERO DE REGISTRO que se te proporcionó:"
@@ -96,7 +122,7 @@ class ActionGetPedido(Action):
 
         return [] 
     
-## -----------------------------------------------------------------------------------------------------------------------------
+## ----------------------------------------------------CONFIRMAR PEDIDO--------------------------------------------
 
     
 class ActionSaveData(Action):
@@ -118,61 +144,33 @@ class ActionSaveData(Action):
         else:
             return f'{nueva_hora.strftime("%H:%M")} de la mañana'
         
-    
-    def generar_numero_telefono(self):
-        prefijo = "+52"
-        
-        numero = ''.join([str(random.randint(0, 9)) for _ in range(10)])
-        
-        return f"{prefijo}{numero}"
-    
 
-    def generar_correo_aleatorio(self):
-        caracteres_usuario = string.ascii_lowercase + string.digits
-        longitud_usuario = random.randint(5, 10)
-        usuario = ''.join(random.choice(caracteres_usuario) for _ in range(longitud_usuario))
-        
-        dominios = ['gmail', 'hotmail', 'yahoo', 'outlook', 'example']
-        
-        extensiones = ['com', 'net', 'org', 'edu', 'mx']
-        
-        dominio = random.choice(dominios)
-        extension = random.choice(extensiones)
-        
-        return f"{usuario}@{dominio}.{extension}"
+    def fecha_actual(self):
+        fecha = datetime.now()
+        fecha_str = fecha.strftime("%Y-%m-%d")
+                
+        hora_str = str(fecha.strftime("%H:%M").replace(':', '.'))
+        hora_float = float(hora_str)
 
+        return hora_float
+        
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        name_ = tracker.get_slot("nombre")
-        numero_ = tracker.get_slot("numero")
-        telefono_ = self.generar_numero_telefono()
-        correo_ = self.generar_correo_aleatorio()
+        api = RegistrosVentas("registro_ventas", "Sheet1")
+        numero_secreto = tracker.get_slot("numero")
+        nombre, id_registro_venta = api.confirmacion_registro_ventas("registro_ventas", numero_secreto, "521295618668")
 
+        if nombre != None:
+            api.update_cell_by_id(id_registro_venta, "hora_confirmacion", self.fecha_actual())
+            api.update_cell_by_id(id_registro_venta, "status_confirmacion", 1)
 
-        id = numero_ + '-' + telefono_[-4:]
-        nombre = name_
-        telefono = telefono_
-        correo = correo_
+            response = f"{nombre}, tu pedido ha quedado registrado, espera máxima de 30 min\n"
+            response += f"si no recibes tu pedido antes de las {self.obtener_hora_menos_30_min()}, (siempre y cuando haya sido aceptado)  tu siguiente compra es gratis\n"
+            response += f"(si quieres ver el seguimiento, escribe 'seguimiento pedido')"
+            response += f"\n"
 
-        db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Marmansanico12345$$",
-            database="tory_cafe",
-            port="3306")
+        else:
+            response = "No se ha podido encontrar tu pedido, porfavor vuelve a crear un link, escribiendo 'hacer pedido"
 
-        cursor = db.cursor()
-
-        insert_query = "INSERT INTO clientes (id_cliente, nombre, telefono, correo) VALUES (%s, %s, %s, %s)"
-        data = (id, nombre, telefono, correo)
-        cursor.execute(insert_query, data)
-
-        db.commit()
-        db.close()
-
-        response = f"{nombre}, tu pedido ha quedado registrado, espera máxima de 30 min\n"
-        response += f"si no recibes tu pedido antes de las {self.obtener_hora_menos_30_min()}, (siempre y cuando haya sido aceptado)  tu siguiente compra es gratis\n"
-        response += f"(si quieres ver el seguimiento, escribe 'seguimiento pedido')"
-        response += f"\n"
 
         dispatcher.utter_message(text=response)
         return []
