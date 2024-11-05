@@ -85,7 +85,7 @@ class ApiAddress():
 
         #alcaldia_final = self.categoria_mas_parecida(alcaldia, alcaldias)
 
-        # complete_address= alcaldia + ', ' + colonia + "," + calle
+        #complete_address= alcaldia + ', ' + colonia + "," + calle
         address = self.get_location_by_address(complete_address)
 
         latitud = address["lat"]
@@ -108,7 +108,7 @@ class ApiAddress():
         distance = R * c
         return distance
         
-    def bola_cerrada(self, direccion, radio=5):
+    def bola_cerrada(self, direccion, radio=100):
         # direccion = direccion.split(',')
         # alcaldia = direccion[0]
         # colonia = direccion[1]
