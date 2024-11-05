@@ -1,1 +1,6 @@
 rasa==3.6.20
+gspread
+numpy
+pandas
+mysql-connector-python
+geopy
