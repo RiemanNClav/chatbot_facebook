@@ -13,8 +13,8 @@ from insertar_data import InsertData
 
 class RegistroBaseDatos():
         
-        def __init__(self, nombre):
-              self.n = nombre
+        def __init__(self):
+              pass
       
         def generar_numero_telefono(self):
             prefijo = 52
@@ -53,7 +53,7 @@ class RegistroBaseDatos():
 
         
         def numeros_aleatorios(self):
-               numero = random.randint(1,1000)
+               numero = random.randint(1,2000)
                return numero
         
 
@@ -64,22 +64,10 @@ class RegistroBaseDatos():
               return id_uuid
 
 
-        def tabla_registro_ventas(self):
+        def tabla_registro_ventas(self, nombre, direccion, id_registro_venta, token_session):
 
-            numero_secreto = self.numeros_aleatorios()
-            nombre = self.n
-            telefono = self.generar_numero_telefono()
-            direccion = 'En desarollo'
-            fecha_registro, hora_registro = self.fecha_actual()
-
-
-            id_registro_venta = str(numero_secreto) + "-" + telefono[-4:] + '-' + str(hora_registro).replace('.', '')
-            id_cliente = self.convertir_telefono_id(telefono)
-
-
-            hora_confirmacion = 0
-            status_registro = 1
-            status_confirmacion = 0
+            nombre = nombre
+            direccion = direccion
 
 
             data = [id_registro_venta, id_cliente, numero_secreto, 
@@ -92,5 +80,5 @@ class RegistroBaseDatos():
             print('Se registró con exito tu pedido')
         
 if __name__=="__main__":
-       clase = RegistroBaseDatos("Lucia Roberto Amairani Zomalia Perez")
+       clase = RegistroBaseDatos("Enrique Peña Niedo", "SISTEMA SOLAR", "64398324454")
        clase.tabla_registro_ventas()

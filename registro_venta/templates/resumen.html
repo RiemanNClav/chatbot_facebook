@@ -9,8 +9,10 @@
     <h1>Resumen del Pedido</h1>
     <h2>Cliente:</h2>
     <p>Nombre: {{ nombre }}</p>
-    <p>Dirección: {{ direccion }}</p>
-    <p>Teléfono: {{ telefono }}</p>
+    <p>Alcadia: {{ alcaldia }}</p>
+    <p>Colonia: {{ colonia }}</p>
+    <p>Calle: {{ calle }}</p>
+
 
     <h2>Detalle de las Bebidas:</h2>
     <ul>
@@ -19,7 +21,7 @@
     {% endfor %}
     </ul>
 
-    <form method="POST" action="/resumen">
+    <form method="POST" action="/resumen/{{ token }}">
         <button type="submit" name="confirmar_pedido">Confirmar Pedido</button>
         <button type="submit" name="reiniciar">Volver al Inicio</button>
     </form>

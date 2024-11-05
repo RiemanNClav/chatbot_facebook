@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, redirect, session
 
+from registro_venta_drive import RegistroBaseDatos
+
 app = Flask(__name__)
 app.secret_key = 'clave_secreta'
+
+clase = RegistroBaseDatos()
+numero_secreto = clase.numeros_aleatorios()
+
 
 @app.route("/", methods=["GET", "POST"])
 def registrar_pedido():
@@ -38,10 +44,13 @@ def registrar_pedido():
 
 @app.route("/resumen", methods=["GET", "POST"])
 def resumen_pedido():
+    clase = RegistroBaseDatos()
     if request.method == "POST":
         if 'confirmar_pedido' in request.form:
             # Aquí puedes manejar la confirmación, por ejemplo, guardar en una base de datos
-            return "Pedido confirmado. ¡Gracias!"
+            response = f"Pedido confirmado ¡Gracias!\n"
+            response += f"NUMERO DE REGISTRO: {numero_secreto}"
+            return response
         elif 'reiniciar' in request.form:
             session.clear()  # Limpiar la sesión para reiniciar el formulario
             return redirect("/")
@@ -51,6 +60,10 @@ def resumen_pedido():
     direccion = session.get('direccion')
     telefono = session.get('telefono')
     bebidas = session.get('bebidas', [])
+    
+    clase.tabla_registro_ventas(nombre, direccion, telefono, numero_secreto)
+
+
 
     return render_template("resumen.html", nombre=nombre, direccion=direccion, telefono=telefono, bebidas=bebidas)
 

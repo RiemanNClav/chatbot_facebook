@@ -50,7 +50,7 @@ class GoogleSheet:
         except gspread.exceptions.CellNotFound:
             print(f"UID {uid} no encontrado.")
 
-    def update_cell_by_id(self, id_registro_venta, column_name, new_value):
+    def update_cell_by_id(self, token_session, column_name, new_value):
         try:
             # Buscar la fila del UID
             data = self.sheet.get_all_records()
@@ -60,16 +60,14 @@ class GoogleSheet:
             col_index = df.columns.get_loc(column_name) + 1  # +1 porque las columnas empiezan desde 1 en Google Sheets
 
             # Buscar el UID en la hoja
-            cell = self.sheet.find(id_registro_venta)
+            cell = self.sheet.find(token_session)
             row_index = cell.row
 
             # Actualizar el valor en la celda específica
             self.sheet.update_cell(row_index, col_index, new_value)
             print(f"Celda en la fila {row_index}, columna '{column_name}' actualizada a '{new_value}'.")
-        except gspread.exceptions.CellNotFound:
-            print(f"UID {id_registro_venta} no encontrado.")
-        except KeyError:
-            print(f"Columna '{column_name}' no encontrada.")
+        except:
+            print(f"UID {token_session} no encontrado.")
     
 
 class InsertData:

@@ -38,23 +38,61 @@
                 `;
             }
         }
+
+        // Función para obtener la ubicación del usuario
+        function obtenerUbicacion() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitud = position.coords.latitude;
+                        const longitud = position.coords.longitude;
+
+                        // Enviar la ubicación al backend usando fetch
+                        fetch("/guardar_ubicacion", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ latitud: latitud, longitud: longitud })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert("Ubicación enviada correctamente: " + data.message);
+                        })
+                        .catch(error => {
+                            console.error("Error al enviar la ubicación:", error);
+                        });
+                    },
+                    function(error) {
+                        console.error("Error obteniendo la ubicación:", error);
+                    }
+                );
+            } else {
+                alert("La geolocalización no está soportada por este navegador.");
+            }
+        }
     </script>
 </head>
-
 
 <body>
     <h1>Registro de Pedido</h1>
     
+    <!-- Botón para solicitar la ubicación -->
+    <button onclick="obtenerUbicacion()">Usar ubicación actual</button><br><br>
+
     <!-- Formulario inicial -->
-    <form method="POST" action="/">
+    <form method="POST" action="/{{ token }}">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" required><br><br>
 
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" required><br><br>
+        <label for="direccion">Alcaldia:</label>
+        <input type="text" id="alcaldia" name="alcaldia" required><br><br>
 
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" required><br><br>
+        <label for="direccion">Colonia:</label>
+        <input type="text" id="colonia" name="colonia" required><br><br>
+
+        <label for="direccion">Calle:</label>
+        <input type="text" id="calle" name="calle" required><br><br>
 
         <label for="cantidad_bebidas">Cantidad de Bebidas:</label>
         <input type="number" id="cantidad_bebidas" name="cantidad_bebidas" min="1" required>
