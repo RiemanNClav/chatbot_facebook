@@ -23,22 +23,22 @@ rules:
   - intent: intent_forma_pago
   - action: utter_forma_pago
 
-- rule: regla_pedido
-  steps:
-  - intent: intent_registro_direccion
-  - action: action_registro_nombre
-
-- rule: regla_nombre
-  steps:
-  - intent: intent_registro_nombre
-  - action: utter_registro_numero_registro
 
 - rule: regla_numero
   steps:
   - intent: intent_registro_numero_registro
   - action: action_save_data
 
-- rule: regla_acotar_ubicacion
+- rule: regla_acotar_telefono
   steps:
   - intent: intent_pedido
-  - action: action_acotar_ubicacion
+  - action: action_validar_telefono
+
+
+- rule: regla_registro_telefono
+  steps:
+  - intent: intent_registro_telefono
+  - action: action_registro_telefono
+
+
+  

@@ -12,16 +12,11 @@ stories:
     - action: utter_ver_menu
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -41,16 +36,11 @@ stories:
     - action: action_get_horario
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -69,16 +59,11 @@ stories:
     - action: utter_forma_pago
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -98,16 +83,11 @@ stories:
     - action: utter_ver_menu
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -126,16 +106,11 @@ stories:
     - action: utter_forma_pago
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -154,16 +129,11 @@ stories:
     - action: utter_ver_menu
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -182,16 +152,11 @@ stories:
     - action: action_get_horario
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -214,16 +179,11 @@ stories:
     - action: utter_forma_pago
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -245,16 +205,11 @@ stories:
     - action: action_get_horario
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -282,16 +237,11 @@ stories:
     - action: utter_forma_pago
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
@@ -313,16 +263,11 @@ stories:
     - action: utter_ver_menu
 
     - intent: intent_pedido
-    - action: action_acotar_ubicacion
-    - intent: intent_registro_direccion
+    - action: action_validar_telefono
+    - intent: intent_registro_telefono
       entities:
-        - direccion
-    - action: action_registro_nombre
-    - intent: intent_registro_nombre
-      entities:
-        - nombre
-  
-    - action: utter_registro_numero_registro
+        - telefono
+    - action: action_registro_telefono
     - intent: intent_registro_numero_registro
       entities:
         - numero
